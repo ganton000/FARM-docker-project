@@ -1,0 +1,15 @@
+# https://github.com/aws-samples/aws-sam-java-rest
+# https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html
+version: "3.8"
+services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
+  api:
+    build: ../
+    ports:
+      - "8080:8080"
+    environment:
+      DYNAMODB_HOST:  "dynamodb"
+      DYNAMODB_PORT: "8000"
